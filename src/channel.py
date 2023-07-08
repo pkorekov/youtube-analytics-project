@@ -32,6 +32,28 @@ class Channel:
         channel = self.youtube.channels().list(id=self.channel_id, part='snippet,statistics').execute()
         printj(channel)
 
+    def __str__(self):
+        """Возвращает название канала и ссылку на канал."""
+        return f"{self.title}({self.url})"
+
+    def __add__(self, other):
+        return int(self.subscriberCount) + int(other.subscriberCount)
+
+    def __sub__(self, other):
+        return int(self.subscriberCount) - int(other.subscriberCount)
+
+    def __gt__(self, other):
+        return int(self.subscriberCount) > int(other.subscriberCount)
+
+    def __ge__(self, other):
+        return int(self.subscriberCount) >= int(other.subscriberCount)
+
+    def __lt__(self, other):
+        return int(self.subscriberCount) < int(other.subscriberCount)
+
+    def __le__(self, other):
+        return int(self.subscriberCount) <= int(other.subscriberCount)
+
 
 
     @classmethod
